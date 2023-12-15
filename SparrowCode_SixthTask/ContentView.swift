@@ -7,18 +7,19 @@
 
 import SwiftUI
 
+let countOfRectangles: Int = 7
+
 struct ContentView: View {
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+        HStack {
+            ForEach(0 ..< countOfRectangles, id: \.self) { _ in
+                RoundedRectangle(cornerRadius: 25)
+                    .frame(width: 100, height: 100)
+                    .foregroundStyle(.blue)
+            }
         }
-        .padding()
     }
 }
-
 #Preview {
     ContentView()
 }
