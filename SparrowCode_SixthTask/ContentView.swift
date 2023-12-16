@@ -8,15 +8,23 @@
 import SwiftUI
 
 let countOfRectangles: Int = 7
+var isPressed: Bool = false
 
 struct ContentView: View {
     var body: some View {
-        HStack {
-            ForEach(0 ..< countOfRectangles, id: \.self) { _ in
-                Button(action: {}, label: {})
-                    .frame(width: 100, height: 100)
-                    .background(Color.blue)
-                    .clipShape(RoundedRectangle(cornerRadius: 25))
+        GeometryReader { geometry in
+            let layout = isPressed ? AnyLayout(VStackLayout()) : AnyLayout(HStackLayout())
+            layout {
+                ForEach(0 ..< countOfRectangles, id: \.self) { _ in
+                    RoundedRectangle(cornerRadius: 10)
+                    .foregroundStyle(Color.blue)
+                    .aspectRatio(contentMode: .fit)
+                    .onTapGesture {
+                        withAnimation {
+                            isPressed.toggle()
+                        }
+                    }
+                }
             }
         }
     }
