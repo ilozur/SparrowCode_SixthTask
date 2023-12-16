@@ -13,9 +13,10 @@ struct ContentView: View {
     var body: some View {
         HStack {
             ForEach(0 ..< countOfRectangles, id: \.self) { _ in
-                RoundedRectangle(cornerRadius: 25)
+                Button(action: {}, label: {})
                     .frame(width: 100, height: 100)
-                    .foregroundStyle(.blue)
+                    .background(Color.blue)
+                    .clipShape(RoundedRectangle(cornerRadius: 25))
             }
         }
     }
